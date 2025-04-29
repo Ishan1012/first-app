@@ -3,13 +3,6 @@ import { SafeAreaView, StyleSheet, Text, View, Image, TouchableOpacity } from 'r
 
 export default function App() {
   let a=require('./assets/image2.jpg');
-  let c=require('./assets/image1.jpg');
-  let b=false;
-
-  function buttonClick() {
-    b=!b;
-    return b?a:c;
-  }
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.hero}>
@@ -17,19 +10,19 @@ export default function App() {
       </View>
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.title}> Plan your day {'\n'} with{' '}
+          <Text style={styles.title}> Organize your day {'\n'} with{' '}
             <View style={styles.appName}>
-              <Text style={styles.appNameText}>Portify</Text>
+              <Text style={styles.appNameText}>Portify🚀</Text>
             </View>
           </Text>
           
           <Text style={styles.message}>
-            this is a sample message
+            Discover a portfolio experience!
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.btn} onPress={() => buttonClick()}>
-          <Text style={styles.btnText}>Let's go</Text>
+        <TouchableOpacity style={styles.btn} onPress={() => {}}>
+          <Text style={styles.btnText}>Get Started</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -93,6 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
+    cursor: 'pointer'
   },
   btnText: {
     fontSize: 15,
