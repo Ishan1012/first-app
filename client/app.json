@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.zenitsu7.firstapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "15e863ae-ad9d-4291-92ee-d4ef92c6c8ee"
+      }
+    },
+    "owner": "zenitsu7"
   }
 }

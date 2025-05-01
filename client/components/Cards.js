@@ -12,11 +12,12 @@ import {
   PixelRatio,
   TouchableOpacity,
 } from 'react-native';
+import TrashIcon from './TrashIcon';
 
-export default function Cards({ values, navigation }) {
+export default function Cards({ values, navigation, del, id }) {
 
   function openContent(item) {
-    navigation.navigate('Content', { item: item });
+    navigation.navigate('Content', { item: item, id: id });
   }
 
   return (
@@ -32,9 +33,14 @@ export default function Cards({ values, navigation }) {
         <Text style={styles.text}>{values.date}</Text>
       </View>
       <Text style={[styles.text, styles.desc]}>{values.desc.substring(0,40)}...</Text>
-      <TouchableOpacity style={styles.button} onPress={() => openContent(values)}>
-        <Text style={styles.buttonText}>View</Text>
-      </TouchableOpacity>
+      <View style={styles.btnContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => del(id)}>
+          <TrashIcon styles={styles.trash} width={20} height={20} color='red' />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => openContent(values)}>
+          <Text style={styles.buttonText}>View</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -73,6 +79,11 @@ const styles = StyleSheet.create({
     paddingBlock: responsiveSize(20),
     paddingInline: 10,
   },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%'
+  },
   button: {
     alignSelf: 'flex-end',
     marginInline: '7%',
@@ -80,6 +91,5 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: responsiveSize(20),
-
   }
 })

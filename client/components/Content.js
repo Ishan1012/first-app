@@ -14,13 +14,14 @@ import {
 } from 'react-native'
 
 export default function Content({navigation,route}) {
-    const {item} = route.params;
+    const {item,id} = route.params;
     const date = JSON.parse(JSON.stringify(item.date));
     const mood = JSON.parse(JSON.stringify(item.mood));
     const desc = JSON.parse(JSON.stringify(item.desc));
+
     return (
         <ScrollView style={styles.container}>
-            <Header navigation={navigation} />
+            <Header navigation={navigation} del={true} id={id} />
             <View style={styles.innerContainer}>
                 <Text style={styles.text}>{date}</Text>
                 <Text style={styles.text}>{'\n'}Mood: {getMood[mood]}{'\n'}</Text>

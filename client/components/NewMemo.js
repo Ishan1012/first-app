@@ -44,8 +44,7 @@ export default function NewMemo({ navigation }) {
             {
               text: 'Ok',
               onPress: () => {
-                console.log(res);
-                navigation.navigate('DailyJournal');
+                navigation.goBack();
               }
             }
           ])
@@ -68,12 +67,15 @@ export default function NewMemo({ navigation }) {
           }
         ]);
       }
+      setDate('');
+      setCurrMood('');
+      setDesc('');
     }
     else {
       Alert.alert("Incomplete Memo", "Please ensure all fields are filled out correctly before submitting.", [
         {
           text: 'Ok',
-          onPress: () => console.log("Incomplete memo submission detected."),
+          onPress: () => console.warn("Incomplete memo submission detected."),
         }
       ]);
     }
@@ -81,7 +83,7 @@ export default function NewMemo({ navigation }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} del={false} />
       <View style={styles.heading}>
         <Text style={styles.headingText}>New Entry</Text>
       </View>
@@ -148,6 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#999',
     paddingLeft: 20,
+    height: 70,
     fontSize: responsiveSize(25),
   },
   inputDesc: {
