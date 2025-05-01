@@ -1,7 +1,7 @@
 export const getColor = {
   'angry': "#faebeb",
-  'good': '#fffde8',
+  'sad': '#edeceb',
   'medium': '#f0f0fa',
-  'tired': '#f1faf0',
-  'sad': '#edeceb'
+  'good': '#fffde8',
+  'happy': '#f1faf0',
 };

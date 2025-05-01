@@ -9,7 +9,8 @@ import {
     Text,
     SafeAreaView,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native'
 
 export default function Content({navigation,route}) {
@@ -18,13 +19,14 @@ export default function Content({navigation,route}) {
     const mood = JSON.parse(JSON.stringify(item.mood));
     const desc = JSON.parse(JSON.stringify(item.desc));
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             <Header navigation={navigation} />
-            <View style={styles.heading}>
+            <View style={styles.innerContainer}>
                 <Text style={styles.text}>{date}</Text>
-                <Text style={styles.text}>Mood: {getMood[mood]}</Text>
+                <Text style={styles.text}>{'\n'}Mood: {getMood[mood]}{'\n'}</Text>
+                <Text style={styles.descText}>{'\n'}{desc}</Text>
             </View>
-        </SafeAreaView>
+        </ScrollView>
 
     )
 }
@@ -34,9 +36,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: '100%',
     },
-    heading: {
-
+    innerContainer: {
+        marginTop: '10%',
+        marginInline: '5%'
     },
     text: {
+        fontSize: responsiveSize(30),
+    },
+    descText: {
+        fontWeight: '300',
+        fontSize: responsiveSize(30),
     }
 })

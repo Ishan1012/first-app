@@ -31,7 +31,7 @@ export default function Cards({ values, navigation }) {
         <Text style={[styles.text, styles.emoji]}>{getMood[values.mood]}</Text>
         <Text style={styles.text}>{values.date}</Text>
       </View>
-      <Text style={[styles.text, styles.desc]}>{values.desc}</Text>
+      <Text style={[styles.text, styles.desc]}>{values.desc.substring(0,40)}...</Text>
       <TouchableOpacity style={styles.button} onPress={() => openContent(values)}>
         <Text style={styles.buttonText}>View</Text>
       </TouchableOpacity>

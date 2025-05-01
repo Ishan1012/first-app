@@ -24,12 +24,6 @@ export default function Header({ navigation }) {
                 <ArrowLeftIcon size={responsiveSize(30)} color="#333" />
                 <Text style={styles.BtnText}>Back</Text>
             </TouchableOpacity>
-            {
-                save &&
-                <TouchableOpacity onPress={() => save()} style={styles.backBtn}>
-                    <Text style={styles.BtnText}>Save</Text>
-                </TouchableOpacity>
-            }
 
         </View>
     )
@@ -43,8 +37,8 @@ const styles = StyleSheet.create({
     },
     header: {
         marginTop: 50,
-        paddingInline: 50,
-        justifyContent: 'space-between',
+        paddingInline: 30,
+        justifyContent: 'flex-start',
         flexDirection: 'row'
     },
     backBtn: {

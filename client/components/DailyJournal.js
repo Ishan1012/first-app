@@ -11,8 +11,15 @@ import {
     StyleSheet,
     TouchableOpacity
 } from "react-native";
+import { useEffect, useState } from "react";
 
 export default function DailyJournal({ navigation }) {
+    const [data,setData]=useState([])
+
+    useEffect(() => {
+        setData(GetData())
+    },[])
+
     function buttonPressed() {
         navigation.navigate('NewMemo');
     }
@@ -31,7 +38,7 @@ export default function DailyJournal({ navigation }) {
             </View>
             <ScrollView style={styles.content}>
                 {
-                    GetData().map((data, index) => (
+                    data.map((data, index) => (
                         <View key={index}>
                             <Cards values={data} navigation={navigation} />
                         </View>

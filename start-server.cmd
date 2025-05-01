@@ -1,1 +1,2 @@
-npx expo start
+cd server
+node server.js

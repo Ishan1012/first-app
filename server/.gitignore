@@ -35,5 +35,5 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-start-app.cmd
 start-server.cmd
+package-lock.json
