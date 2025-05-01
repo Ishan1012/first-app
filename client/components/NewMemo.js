@@ -32,7 +32,7 @@ export default function NewMemo({ navigation }) {
           desc,
         };
 
-        const response = await fetch("http://10.12.3.200:3000/api/notes/", {
+        const response = await fetch("https://memo-mate-cbzn.onrender.com/api/notes/", {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
