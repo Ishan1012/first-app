@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './components/HomeScreen';
 import DailyJournal from './components/DailyJournal';
@@ -13,7 +13,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-        headerShown: false
+        headerShown: false,
+        statusBarStyle: 'dark',
       }} initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DailyJournal" component={DailyJournal} />
