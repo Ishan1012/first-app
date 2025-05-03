@@ -37,3 +37,5 @@ yarn-error.*
 
 start-server.cmd
 package-lock.json
+
+.env
