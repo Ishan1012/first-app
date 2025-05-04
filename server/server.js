@@ -9,7 +9,7 @@ const UserRoutes = require('./routes/UserRoutes')
 dotenv.config();
 
 const PORT = 3000;
-const uri =  'mongodb://localhost:27017/MemoMate';
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/MemoMate';
 
 app.use(express.json());
 app.use(cors());
