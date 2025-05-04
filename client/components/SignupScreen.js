@@ -41,7 +41,6 @@ export default function SignupScreen({ navigation }) {
 
         setLoading(true);
         const { username, email, password, confirmPassword } = form;
-        console.log(username, email, password, confirmPassword);
 
         if (!username || !email || !password || !confirmPassword) {
             Alert.alert('Missing Information', 'All fields are required. Please complete the form.');

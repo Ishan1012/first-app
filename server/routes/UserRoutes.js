@@ -81,7 +81,7 @@ router.post('/signup', async (req,res) => {
             }
         })
 
-        const verificationUrl = `http://localhost:3000/api/user/verify?token=${verificationToken}`;
+        const verificationUrl = `https://memo-mate-cbzn.onrender.com/api/user/verify?token=${verificationToken}`;
         await transporter.sendMail({
             from: `MemoMate <${process.env.EMAIL_ID}>`,
             to: email,

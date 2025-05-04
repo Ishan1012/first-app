@@ -41,7 +41,6 @@ const LoginScreen = ({ navigation }) => {
 
         setLoading(true);
         const { username, password } = form;
-        console.log(username, password);
 
         if (!username || !password) {
             Alert.alert('Missing Information', 'All fields are required. Please complete the form.');
