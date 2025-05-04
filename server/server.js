@@ -3,17 +3,19 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const NotesRouter = require('./routes/NotesRoutes')
+const NotesRoutes = require('./routes/NotesRoutes')
+const UserRoutes = require('./routes/UserRoutes')
 
 dotenv.config();
 
 const PORT = 3000;
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/MemoMate';
+const uri =  'mongodb://localhost:27017/MemoMate';
 
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/notes', NotesRouter);
+app.use('/api/notes', NotesRoutes);
+app.use('/api/user', UserRoutes);
 
 mongoose.connect(uri, {
     useNewUrlParser: true,

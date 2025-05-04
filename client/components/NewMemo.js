@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header';
 import {
   View,
@@ -12,21 +12,45 @@ import {
 } from 'react-native'
 import { getMood, moods } from '../hooks/getMood';
 import responsiveSize from '../hooks/responsiveSize';
+import { UserService } from './UserService';
 
 export default function NewMemo({ navigation }) {
   const [date, setDate] = React.useState('');
   const [currMood, setCurrMood] = React.useState('');
   const [desc, setDesc] = React.useState('');
+  const [loading, setLoading] = useState(false);
 
   function buttonPressed(emoji) {
     setCurrMood(emoji);
   }
 
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const savedUser = await UserService.loadUser();
+        if (!savedUser)
+          navigation.navigate('Home');
+      } catch (error) {
+        console.error("Error in loadUser:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadUser();
+  }, []);
+
   const submit = async () => {
-    if(date.length > 0 && currMood.length > 0 && desc.length > 0 ) {  
+    if (loading) return;
+    setLoading(true);
+
+    const user = await UserService.loadUser();
+    const userId = user._id;
+    console.log(userId);
+    if (date.length > 0 && currMood.length > 0 && desc.length > 0) {
       try {
 
         const data = {
+          userId,
           date,
           mood: currMood,
           desc,
@@ -38,7 +62,8 @@ export default function NewMemo({ navigation }) {
           body: JSON.stringify(data)
         })
         const res = await response.json();
-        
+        console.log(res);
+
         if (response.ok) {
           Alert.alert("Saved Successfully!", "Your memo has been saved successfully.", [
             {
@@ -57,7 +82,7 @@ export default function NewMemo({ navigation }) {
             }
           ]);
         }
-  
+
       }
       catch (err) {
         Alert.alert("Error Saving Memo", "An error occurred while saving your memo. Please try again later", [
@@ -66,6 +91,8 @@ export default function NewMemo({ navigation }) {
             onPress: () => console.log("Error details:", err),
           }
         ]);
+      } finally {
+        setLoading(false);
       }
       setDate('');
       setCurrMood('');
@@ -78,6 +105,7 @@ export default function NewMemo({ navigation }) {
           onPress: () => console.warn("Incomplete memo submission detected."),
         }
       ]);
+      setLoading(false);
     }
   }
 

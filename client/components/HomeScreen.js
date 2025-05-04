@@ -1,22 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import responsiveSize from '../hooks/responsiveSize';
-import { 
-    SafeAreaView, 
-    StyleSheet, 
-    Text, 
-    View, 
-    Image, 
+import { UserService } from './UserService';
+import {
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    View,
+    Image,
     TouchableOpacity,
-    Dimensions,
-    PixelRatio
+    Animated
 } from 'react-native';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
     let a = require('../assets/hero-image.png');
-    let b = require('../assets/icon.png');
+    let b = require('../assets/logo.png');
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState('');
+
+    useEffect(() => {
+        const loadUser = async () => {
+            try {
+                const savedUser = await UserService.loadUser();
+                console.log(savedUser);
+                if (savedUser) {
+                    setUser(savedUser);
+                }
+            } catch (error) {
+                console.error("Error in loadUser:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadUser();
+    }, []);
+
 
     const buttonPressed = () => {
-        navigation.navigate('DailyJournal');
+        if (!loading && !user)
+            navigation.navigate('Login');
+        else
+            navigation.navigate('DailyJournal');
     }
 
     return (
@@ -31,13 +54,10 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.content}>
                 <View>
                     <Text style={styles.title}> Welcome To MemoMate
-                        {/* <View style={styles.appName}>
-                            <Text style={styles.appNameText}>BrainPad</Text>
-                        </View> */}
                     </Text>
 
                     <Text style={styles.message}>
-                        Save your notes and memo quickly and easily 
+                        Write memos with Mewmo quickly and easily
                     </Text>
                 </View>
 
@@ -89,7 +109,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         padding: 16,
         borderRadius: 16,
-        margin: 12,
+        margin: 0,
     },
     heroImg: {
         alignSelf: 'center',
