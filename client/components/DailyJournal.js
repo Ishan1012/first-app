@@ -104,6 +104,7 @@ export default function DailyJournal({ navigation }) {
 
     useFocusEffect(
         React.useCallback(() => {
+            getData(); // Fetch data when the screen comes into focus
             const loadUser = async () => {
                 try {
                     const savedUser = await UserService.loadUser();
@@ -116,7 +117,6 @@ export default function DailyJournal({ navigation }) {
                 }
             };
             loadUser();
-            getData(); // Fetch data when the screen comes into focus
         }, [])
     );
 
@@ -139,7 +139,7 @@ export default function DailyJournal({ navigation }) {
                     <CloseIcon size={32} color="#fff" style={styles.btnText2} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn2} onPress={profile}>
-                    <Text style={styles.navLinks}>Profle</Text>
+                    <Text style={styles.navLinks}>Profile</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn2} onPress={help}>
                     <Text style={styles.navLinks}>Help</Text>

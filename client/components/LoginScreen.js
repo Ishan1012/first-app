@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { UserService } from './UserService';
@@ -105,7 +105,11 @@ const LoginScreen = ({ navigation }) => {
                 </View>
 
                 <TouchableOpacity style={styles.loginButton} onPress={handleSubmit}>
-                    <Text style={styles.loginText}>Login</Text>
+                    {loading ? (
+                        <ActivityIndicator size='large' color='#fff' style={styles.loginText} />
+                    ) : (
+                        <Text style={styles.loginText}>Login</Text>
+                    )}
                 </TouchableOpacity>
 
                 <TouchableOpacity>
