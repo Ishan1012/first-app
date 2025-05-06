@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         borderColor: themeBlue,
+        color: "#000",
         borderWidth: 1,
         borderRadius: 12,
         paddingHorizontal: 15,
@@ -203,6 +204,7 @@ const styles = StyleSheet.create({
     passwordInput: {
         flex: 1,
         paddingVertical: 14,
+        color: '#000',
         fontSize: 16,
     },
 });
