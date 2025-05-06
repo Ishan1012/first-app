@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
         padding: 14,
         borderRadius: 10,
         marginBottom: 16,
+        color: '#000',
         fontSize: 16,
         backgroundColor: '#f9f9f9',
     },
@@ -180,6 +181,7 @@ const styles = StyleSheet.create({
     passwordInput: {
         flex: 1,
         paddingVertical: 14,
+        color: '#000',
         fontSize: 16,
     },
     button: {
