@@ -64,11 +64,13 @@ const LoginScreen = ({ navigation }) => {
             Alert.alert('Login failed', error?.response?.data?.message || 'An error occurred');
         } finally {
             setLoading(false);
+            navigation.goBack();
             navigation.navigate('DailyJournal');
         }
     };
 
     const signup = () => {
+        navigation.goBack();
         navigation.navigate('Signup');
     }
 

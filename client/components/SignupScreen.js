@@ -63,14 +63,17 @@ export default function SignupScreen({ navigation }) {
                 confirmPassword: ''
             });
             Alert.alert('Signup Successful', 'Your account has been created successfully.', [
-                { text: 'OK', onPress: () => navigation.navigate('DailyJournal') }
+                { text: 'OK', onPress: () => {
+                    navigation.goBack();
+                    navigation.navigate('DailyJournal');
+                }
+            }
             ]);
         } catch (error) {
             console.log(error);
             Alert.alert('Signup failed', error?.response?.data?.message || 'An error occurred');
         } finally {
             setLoading(false);
-            navigation.navigate('Home')
         }
     };
 
@@ -130,7 +133,7 @@ export default function SignupScreen({ navigation }) {
                     {loading ? (
                         <ActivityIndicator size='large' color='#fff' style={styles.buttonText} />
                     ) : (
-                        <Text style={styles.buttonText}>Login</Text>
+                        <Text style={styles.buttonText}>Sign Up</Text>
                     )}
                 </TouchableOpacity>
             </ScrollView>

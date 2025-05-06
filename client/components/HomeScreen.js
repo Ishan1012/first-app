@@ -21,7 +21,6 @@ const HomeScreen = ({ navigation }) => {
         const loadUser = async () => {
             try {
                 const savedUser = await UserService.loadUser();
-                console.log(savedUser);
                 if (savedUser) {
                     setUser(savedUser);
                 }
@@ -139,6 +138,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 14,
         width: '90%',
+        marginBlock: 20,
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
